@@ -98,7 +98,7 @@ namespace otopark_
             dtp_entry.CustomFormat = "dd.MM.yyyy HH:mm";
             dtp_entry.ShowUpDown = false;
 
-            lbl_fill.Text = $"Occupancy Rate : {Space_Area}/100";
+            lbl_fill.Text = $"Empty space : {Space_Area}/100";
 
 
 
