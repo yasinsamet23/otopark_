@@ -102,12 +102,12 @@ namespace Otopark.Tests
                 75
             );
 
-            
+
             paymentForm.btn_payment_Click(null, EventArgs.Empty);
             
             
 
-            /
+            
             Assert.AreEqual(1, ReportStore.Payments.Count);
         }
 
