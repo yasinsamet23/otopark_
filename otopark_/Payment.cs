@@ -52,7 +52,7 @@ namespace otopark_
         {
 
             
-            mainPanel.Occupancy += 1;
+            mainPanel.Space_Area += 1;
 
 
 

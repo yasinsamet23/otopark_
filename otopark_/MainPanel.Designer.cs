@@ -51,7 +51,6 @@ namespace otopark_
             dtp_entry.Name = "dtp_entry";
             dtp_entry.Size = new Size(226, 27);
             dtp_entry.TabIndex = 1;
-            
             // 
             // cBox_subscription
             // 
@@ -62,7 +61,6 @@ namespace otopark_
             cBox_subscription.TabIndex = 3;
             cBox_subscription.Text = "Subscription";
             cBox_subscription.UseVisualStyleBackColor = true;
-            
             // 
             // btn_end_of_day
             // 
@@ -98,10 +96,10 @@ namespace otopark_
             lbl_fill.AutoSize = true;
             lbl_fill.Location = new Point(12, 318);
             lbl_fill.Name = "lbl_fill";
-            lbl_fill.Size = new Size(172, 20);
+            lbl_fill.Size = new Size(150, 20);
             lbl_fill.TabIndex = 10;
-            lbl_fill.Text = "Occupancy Rate : 50/100";
-            
+            lbl_fill.Text = "Empty space : 50/100";
+            lbl_fill.Click += lbl_fill_Click;
             // 
             // lbl_total
             // 
@@ -111,7 +109,6 @@ namespace otopark_
             lbl_total.Size = new Size(141, 20);
             lbl_total.TabIndex = 11;
             lbl_total.Text = "Total daily revenue :";
-            
             // 
             // cBox_vehicle_type
             // 
@@ -120,7 +117,6 @@ namespace otopark_
             cBox_vehicle_type.Name = "cBox_vehicle_type";
             cBox_vehicle_type.Size = new Size(187, 28);
             cBox_vehicle_type.TabIndex = 14;
-            
             // 
             // btn_calculate
             // 
@@ -143,7 +139,6 @@ namespace otopark_
             lbl_user_name.Name = "lbl_user_name";
             lbl_user_name.Size = new Size(0, 20);
             lbl_user_name.TabIndex = 16;
-            
             // 
             // MainPanel
             // 

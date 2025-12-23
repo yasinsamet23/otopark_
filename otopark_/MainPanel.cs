@@ -25,23 +25,23 @@ namespace otopark_
         private int currentFilled = 55;
         private double totalDailyRevenue = 0;
 
-        
+
         private readonly Random rnd = new Random();
 
-        
+
 
         // Otopark doluluk sayýsý
-        private int occupancy =50;
-        public int Occupancy
+        private int space_area = 50;
+        public int Space_Area
         {
-           get { return occupancy;} 
-            
-           set 
-           { 
-              occupancy = value;
-              lbl_fill.Text = $"Occupancy Rate : {occupancy}/100";
-           }
-            
+            get { return space_area; }
+
+            set
+            {
+                space_area = value;
+                lbl_fill.Text = $"Empty Space : {space_area}/100";
+            }
+
         }
 
         // Günlük toplam kazanç
@@ -66,7 +66,7 @@ namespace otopark_
 
 
 
-        
+
         public DateTime GenerateRandomExit(DateTime entry)
         {
             int minMinutes = 5;                     // en az 5 dk
@@ -76,29 +76,29 @@ namespace otopark_
             return entry.AddMinutes(minutes);
         }
 
-        
 
-       
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             cBox_vehicle_type.Items.Add("Motorcycle");
             cBox_vehicle_type.Items.Add("Car");
             cBox_vehicle_type.Items.Add("SUV / Light Commercial");
             cBox_vehicle_type.Items.Add("Minibus / Midibus");
             cBox_vehicle_type.Items.Add("Bus / Truck");
 
-            
+
             cBox_vehicle_type.SelectedIndex = 1;
 
 
-            
-            dtp_entry.Format = DateTimePickerFormat.Custom;
-            dtp_entry.CustomFormat = "dd.MM.yyyy HH:mm"; 
-            dtp_entry.ShowUpDown = false; 
 
-            lbl_fill.Text = $"Occupancy Rate : {Occupancy}/100";
+            dtp_entry.Format = DateTimePickerFormat.Custom;
+            dtp_entry.CustomFormat = "dd.MM.yyyy HH:mm";
+            dtp_entry.ShowUpDown = false;
+
+            lbl_fill.Text = $"Occupancy Rate : {Space_Area}/100";
 
 
 
@@ -111,13 +111,13 @@ namespace otopark_
         }
 
 
-        
 
-        
 
-        
 
-        
+
+
+
+
 
 
 
@@ -128,25 +128,24 @@ namespace otopark_
                 MessageBox.Show("You must login first!");
                 return;
             }
-            
-            EndOfDay endOfDay = new EndOfDay();
-            
+
+            EndOfDay endOfDay = new EndOfDay(this);
             endOfDay.ShowDialog();
 
-            
+
         }
 
-        
 
-        
+
+
         public string RandomPlate()
         {
-            int provinceCode = rnd.Next(1, 82); 
+            int provinceCode = rnd.Next(1, 82);
             string letters = "";
             for (int i = 0; i < 3; i++)
                 letters += (char)rnd.Next('A', 'Z' + 1);
 
-            int number = rnd.Next(1, 1000); 
+            int number = rnd.Next(1, 1000);
 
             return provinceCode.ToString("00") + " " + letters + " " + number.ToString("000");
         }
@@ -160,7 +159,18 @@ namespace otopark_
                 return;
             }
 
-            string plate="";
+            if (Space_Area == 100)
+            {
+                MessageBox.Show(
+                    "The car park is completely empty; please wait for a vehicle to enter before making a calculation.",
+                    "Parking Empty",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            string plate = "";
             string vehicle = cBox_vehicle_type.SelectedItem.ToString();
             bool subscriber = cBox_subscription.Checked;
             DateTime entryTime = dtp_entry.Value;
@@ -174,21 +184,21 @@ namespace otopark_
                 MessageBox.Show("Error calculating fee!");
                 return;
             }
-            
+
             if (subscriber)
                 plate = RandomPlate();
 
-            
+
             Payment form3 = new Payment(this);
             form3.AddRow(plate, vehicle, subscriber, entryTime, exitTime, fee);
-            form3.ShowDialog(); 
-
-            
-            
-            
+            form3.ShowDialog();
 
 
-            
+
+
+
+
+
 
 
 
@@ -237,13 +247,13 @@ Abonelere özel toplam tutardan %25 indirim uygulanýr.
              */
         }
 
-        
 
-        
 
-        
 
-        
+
+
+
+
         private void btn_user_login_Click(object sender, EventArgs e)
         {
             if (!isUserLoggedIn)
@@ -272,14 +282,12 @@ Abonelere özel toplam tutardan %25 indirim uygulanýr.
 
         private void OccupancyTimer_Tick(object sender, EventArgs e)
         {
-            Occupancy = Math.Max(0, Occupancy - 5);
+            Space_Area = Math.Max(0, Space_Area - 5);
         }
 
+        private void lbl_fill_Click(object sender, EventArgs e)
+        {
 
-
-
-
-
-
+        }
     }
 }

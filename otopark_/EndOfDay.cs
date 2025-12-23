@@ -17,9 +17,11 @@ namespace otopark_
 {
     public partial class EndOfDay : Form
     {
-        public EndOfDay()
+        private MainPanel mainPanel;
+        public EndOfDay(MainPanel panel)
         {
             InitializeComponent();
+            mainPanel = panel;
         }
 
         private void btn_print_Click(object sender, EventArgs e)
@@ -49,7 +51,20 @@ namespace otopark_
                 }
             }
 
-            
+
+            int totalRow = endOfDayDgv.Rows
+    .Cast<DataGridViewRow>()
+    .Count(r => !r.IsNewRow) + 2;
+
+            worksheet.Cells[totalRow, endOfDayDgv.Columns.Count - 1] = "TOTAL";
+            worksheet.Cells[totalRow, endOfDayDgv.Columns.Count - 1].Font.Bold = true;
+
+            worksheet.Cells[totalRow, endOfDayDgv.Columns.Count] =
+                mainPanel.totalDailyIncome + " TL";
+            worksheet.Cells[totalRow, endOfDayDgv.Columns.Count].Font.Bold = true;
+
+
+
             worksheet.Columns.AutoFit();
 
             
