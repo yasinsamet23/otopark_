@@ -46,7 +46,7 @@ namespace otopark_
                 double segmentHours = (segmentEnd - segmentStart).TotalHours;
 
                 if (segmentHours <= 0)
-                    break; // Güvenlik — segment bozuksa çık
+                    break; // Segment bozuksa çık
 
                 bool weekend = (segmentStart.DayOfWeek == DayOfWeek.Saturday ||
                                 segmentStart.DayOfWeek == DayOfWeek.Sunday);

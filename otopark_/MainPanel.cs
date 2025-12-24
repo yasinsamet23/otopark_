@@ -20,7 +20,7 @@ namespace otopark_
         private Payment form3Instance;
         private bool isUserLoggedIn = false;
 
-        // Doluluk / toplam hasýlat
+        
         private int totalCapacity = 100;
         private int currentFilled = 55;
         private double totalDailyRevenue = 0;
@@ -28,9 +28,13 @@ namespace otopark_
 
         private readonly Random rnd = new Random();
 
+        public static bool getEndOfDayReport = true;
 
 
-        // Otopark doluluk sayýsý
+
+
+
+
         private int space_area = 50;
         public int Space_Area
         {
@@ -44,7 +48,7 @@ namespace otopark_
 
         }
 
-        // Günlük toplam kazanç
+        
         private double total_daily_income = 0;
         public double totalDailyIncome
         {
@@ -159,6 +163,7 @@ namespace otopark_
                 return;
             }
 
+
             if (Space_Area == 100)
             {
                 MessageBox.Show(
@@ -166,11 +171,19 @@ namespace otopark_
                     "Parking Empty",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
+
                 );
+                btn_calculate.Enabled = false;
+
+
                 return;
             }
 
-            string plate = "";
+            
+
+
+
+                string plate = "";
             string vehicle = cBox_vehicle_type.SelectedItem.ToString();
             bool subscriber = cBox_subscription.Checked;
             DateTime entryTime = dtp_entry.Value;
@@ -271,6 +284,12 @@ Abonelere özel toplam tutardan %25 indirim uygulanýr.
             else
             {
                 // Logout iþlemi
+                if(getEndOfDayReport==false)
+                {
+                    MessageBox.Show("You must export the end-of-day report to Excel before logging out.");
+                    return;
+                }
+
                 isUserLoggedIn = false;
                 lbl_user_name.Text = "";
                 btn_user_login.Text = "User Login";
@@ -283,11 +302,9 @@ Abonelere özel toplam tutardan %25 indirim uygulanýr.
         private void OccupancyTimer_Tick(object sender, EventArgs e)
         {
             Space_Area = Math.Max(0, Space_Area - 5);
+            btn_calculate.Enabled = true;
         }
 
-        private void lbl_fill_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

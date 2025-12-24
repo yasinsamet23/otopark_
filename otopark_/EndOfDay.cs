@@ -23,9 +23,16 @@ namespace otopark_
             InitializeComponent();
             mainPanel = panel;
         }
+        public EndOfDay() 
+        {
+            InitializeComponent();
+        }
+
 
         private void btn_print_Click(object sender, EventArgs e)
         {
+            
+            MainPanel.getEndOfDayReport = true;
             Excel.Application excelApp = new Excel.Application();
             excelApp.Visible = true;
 

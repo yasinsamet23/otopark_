@@ -20,11 +20,11 @@ namespace Otopark.Tests
 
         
         [TestMethod]
-        public void Payment_ShouldIncreaseOccupancy()
+        public void Payment_ShouldIncreaseEmptySpace()
         {
             
             MainPanel panel = new MainPanel();
-            int initialOccupancy = panel.Occupancy;
+            int initialEmptySpace = panel.Space_Area;
 
             Payment paymentForm = new Payment(panel);
 
@@ -44,7 +44,7 @@ namespace Otopark.Tests
             paymentForm.btn_payment_Click(null, EventArgs.Empty);
 
             
-            Assert.AreEqual(initialOccupancy + 1, panel.Occupancy);
+            Assert.AreEqual(initialEmptySpace + 1, panel.Space_Area);
         }
 
 

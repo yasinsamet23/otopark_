@@ -12,6 +12,7 @@ namespace otopark_
 {
     public partial class Payment : Form
     {
+        
         private MainPanel mainPanel;
         public Payment(MainPanel panel)
         {
@@ -29,6 +30,8 @@ namespace otopark_
                 dgvvehicleInfo.Columns.Add("fee", "Fee (TL)");
             }
         }
+
+        
 
         
 
@@ -50,8 +53,10 @@ namespace otopark_
 
         public void btn_payment_Click(object sender, EventArgs e)
         {
+            MainPanel.getEndOfDayReport = false;
 
-            
+
+
             mainPanel.Space_Area += 1;
 
 

@@ -99,7 +99,7 @@ namespace otopark_
             lbl_fill.Size = new Size(150, 20);
             lbl_fill.TabIndex = 10;
             lbl_fill.Text = "Empty space : 50/100";
-            lbl_fill.Click += lbl_fill_Click;
+            
             // 
             // lbl_total
             // 
